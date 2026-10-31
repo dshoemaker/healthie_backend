@@ -2,7 +2,7 @@ require "test_helper"
 
 class ProvidersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @provider = providers(:one)
+    @provider = providers(:simon)
   end
 
   test "should get index" do

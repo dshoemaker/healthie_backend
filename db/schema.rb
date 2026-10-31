@@ -10,12 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_31_172450) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_31_174320) do
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "provider_id", null: false
+    t.integer "client_id", null: false
+    t.string "plan"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_enrollments_on_client_id"
+    t.index ["provider_id", "client_id"], name: "index_enrollments_on_provider_id_and_client_id", unique: true
+    t.index ["provider_id"], name: "index_enrollments_on_provider_id"
   end
 
   create_table "providers", force: :cascade do |t|
@@ -24,4 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_31_172450) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "enrollments", "clients"
+  add_foreign_key "enrollments", "providers"
 end
