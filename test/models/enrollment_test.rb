@@ -22,4 +22,17 @@ class EnrollmentTest < ActiveSupport::TestCase
       assert_includes enrollment.errors[:plan], "is not included in the list"
     end
   end
+
+  test "rejects a duplicate provider-client pair" do
+    existing = enrollments(:basic)
+
+    duplicate = Enrollment.new(
+      provider: existing.provider,
+      client: existing.client,
+      plan: "premium"
+    )
+
+    assert_not duplicate.valid?
+    assert_includes duplicate.errors[:client_id], "has already been taken"
+  end
 end
