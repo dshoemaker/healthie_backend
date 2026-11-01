@@ -1,0 +1,12 @@
+<% content_for :title, "Editing journal entry" %>
+
+<h1>Editing journal entry</h1>
+
+<%= render "form", journal_entry: @journal_entry %>
+
+<br>
+
+<div>
+  <%= link_to "Show this journal entry", @journal_entry %> |
+  <%= link_to "Back to journal entries", journal_entries_path %>
+</div>

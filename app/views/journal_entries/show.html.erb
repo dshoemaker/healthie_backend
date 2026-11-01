@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @journal_entry %>
+
+<div>
+  <%= link_to "Edit this journal entry", edit_journal_entry_path(@journal_entry) %> |
+  <%= link_to "Back to journal entries", journal_entries_path %>
+
+  <%= button_to "Destroy this journal entry", @journal_entry, method: :delete %>
+</div>
